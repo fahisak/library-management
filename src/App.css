@@ -1,38 +1,97 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 130px;
+    margin-bottom: 130px;
+    background-color: rgb(199, 153, 185);
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.a_main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 130px;
+    background-color: rgb(199, 153, 185);
+    height: 650px;
+    width: 500px;
+    border-radius: 10px;
+    margin-bottom: 130px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+text {
+    height: 50px;
+    width: 200px
 }
 
-.App-link {
-  color: #61dafb;
+input {
+    width: 200px;
+    padding: 5px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: whitesmoke;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* height: 100vh; */
+    flex-wrap: wrap;
+    background-size: cover;
+    background-image: url("https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    background-repeat: repeat;
+}
+
+.quotes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: 500px;
+    /* width: 500px; */
+    border-radius: 10px;
+}
+
+
+/* .header {
+    width: 100%;
+    background-color: rgb(199, 153, 185);
+    color: rgb(29, 24, 24);
+    display: flex;
+    justify-content: flex-end
+} */
+
+.account {
+    margin-right: 90px;
+}
+
+.login {
+    margin-right: 80px;
+}
+
+.input {
+    margin: 20px;
+    align-items: center;
+    display: flex;
+}
+
+.leftside {
+    width: 110px;
+}
+
+.color-nav {
+    background-color: rgb(199, 153, 185);
 }
