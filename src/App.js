@@ -18,6 +18,7 @@ import Request from './Components/Admin/Request';
 import User_request from './Components/Subadmin/User_request';
 import Arrange from './Components/Subadmin/Arrange';
 import Searchbooks from './Components/user/Searchbooks';
+import Takebook from './Components/user/Takebook';
 function App() {
   return (
     <div>
@@ -78,9 +79,9 @@ function App() {
     <Route path="/searchbook" element={<Searchbooks/>}></Route>
     </Routes> 
 
-    {/* <Routes>
-    <Route path="/updatebooks" element={<Updatebook/>}></Route>
-    </Routes>  */}
+    <Routes>
+    <Route path="/takebook/:id" element={<Takebook/>}></Route>
+    </Routes> 
 
     {/* <Routes>
     <Route path="/updatebooks" element={<Updatebook/>}></Route>
