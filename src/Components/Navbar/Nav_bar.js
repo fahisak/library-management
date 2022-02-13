@@ -27,7 +27,7 @@ function Nav_bar() {
                        
                        return(
                            <Card style={{ width: '18rem',margin:"55px",alignItems:'center', backgroundColor:'black',color:'white' }}>
-                           <Card.Img variant="top" src={i.image} style={{height:'200px',width:'200px'}} />
+                           <Card.Img variant="top" src={i.bookdetails[0].image} style={{height:'200px',width:'200px'}} />
                            <Card.Body>
                                <div className='cryptname'>
                                <Card.Title>
@@ -35,13 +35,16 @@ function Nav_bar() {
                                    {i.bookname}
                                        </div>
                                        <div>
-                                       <h6>{i.author}</h6>
+                                       <h6>{i.bookdetails[0].author}</h6>
                                            </div></Card.Title>
 
                                </div>
                               
                                <Card.Text>
-                                   {i.edition} th edition
+                               {i.bookdetails[0].edition} th edition
+                               </Card.Text>
+                               <Card.Text>
+                               Shelf NO  {i.shelfno} 
                                </Card.Text>
                                <Link to={`/takebook/${i._id}`}>
                                <Button variant="primary">Take</Button>
@@ -76,7 +79,7 @@ function Nav_bar() {
             setviewbook(res.data)
 
         })
-
+console.log("state",viewbook);
 
     }
     return (
@@ -104,18 +107,12 @@ function Nav_bar() {
                                 <Nav.Link href="#action2">View books</Nav.Link>
                             </Link>
 
+                            <Link to={"/postfeedback"} class="nav-link active">
+                                <Nav.Link href="#action3">Feedback&Complients</Nav.Link>
+                            </Link>
 
-                            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
-                            </NavDropdown>
-                            <Nav.Link href="#" disabled>
-                                Link
-                            </Nav.Link> */}
+
+                           
                         </Nav>
                         <Form className="d-flex">
                             <FormControl
@@ -130,13 +127,7 @@ function Nav_bar() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {/* {(viewbook.length === 1 ? <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            /> : viewbook.map((i) => {
-                return (<><h6>{i.bookname}</h6><h6>{i.author}</h6></>)
-            })
-            )} */}
+           
 
 
 <MyVerticallyCenteredModal
@@ -144,16 +135,7 @@ function Nav_bar() {
                 onHide={() => setModalShow(false)}
             />
 
-            {/* {
-           viewbook.map((i)=>{
-               return(
-                   <Search name={i.bookname}
-                   author={i.author}
-                   edition={i.edition}/>
-               )
-           })
-       } */}
-
+           
 
         </div>
     )

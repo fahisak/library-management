@@ -5,10 +5,10 @@ import axios from 'axios'
    
 
 function User_request() {
-    
+    const[data,setdata]=useState([])
       
         var j=1
-        const[data,setdata]=useState([])
+        
         const displayrequest=()=>{
             axios.get("http://localhost:3000/userrequest").then((res)=>{
                 console.log("res",res.data);

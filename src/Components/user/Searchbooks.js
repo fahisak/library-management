@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import Nav_bar from '../Navbar/Nav_bar'
 
-// import {Link} from'react-router-dom'
+
+ import {Link} from'react-router-dom'
 
 
 function Searchbooks() {
@@ -34,21 +35,21 @@ function Searchbooks() {
         Viewbooksdetails()
     }, [])
 
-    const [book, setbook] = useState()
-    const [viewbook, setviewbook] = useState([])
-    const handlechange = (e) => {
-        setbook(e.target.value)
+    // const [book, setbook] = useState()
+    // const [viewbook, setviewbook] = useState([])
+    // const handlechange = (e) => {
+    //     setbook(e.target.value)
 
-    }
-    const searchbook = () => {
-        axios.post("http://localhost:3000/searchbook", { book: book }).then((res) => {
-            console.log("res", res.data);
-            setviewbook(res.data)
+    // }
+    // const searchbook = () => {
+    //     axios.post("http://localhost:3000/searchbook", { book: book }).then((res) => {
+    //         console.log("res", res.data);
+    //         setviewbook(res.data)
 
-        })
+    //     })
 
 
-    }
+    // }
     return (
         <div>
             <Nav_bar />
@@ -85,10 +86,10 @@ function Searchbooks() {
                                                 {i.shelfno}</h5>
                                         </Card.Text>
 
-                                        {/* <Link to={"/updatebooks"}> */}
-                                        <Button variant="primary" style={{ margin: "30px" }} >Take</Button>
-                                        {/* </Link> */}
-                                        {/* <Button variant="primary">Delete</Button> */}
+                                        <Link to={`/takebook/${i._id}`}>
+                               <Button variant="primary" style={{ margin: "30px" }}>Take</Button>
+                               </Link>
+                                       
                                     </Card.Body>
                                 </Card>
                             </>
@@ -100,10 +101,7 @@ function Searchbooks() {
 
 
                 }
-                {/* {
-               state.length !== 0 ?<Updatebook id={state}/>:"kkk"
-           } */}
-
+               
 
             </div >
 

@@ -1,6 +1,6 @@
 
-import React, { useState ,useEffect} from 'react'
-import { Link ,useLocation} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import Admin_nav from './Admin_nav'
 
@@ -8,68 +8,57 @@ import axios from 'axios'
 
 function Updatebook() {
     //  alert("haii")
-    //  console.log("idff",props);
-    const {state} = useLocation();
-const { id } = state;
-    
+
+    const { state } = useLocation();
+    console.log("idff", state);
+    const { id, bookname, author, edition, language, stock, image, category } = state;
+    // console.log("iddd",id,"bookname",bookname,"author",author,"edition",edition,"language",language,"stock",stock,"image",image,"category",category);
 
 
-    
-    
-    const [bookdetails, setbookdetails] = useState({ bookname: '',image:'', author: '', edition: '', language: '', category: '', stock: '', shelfno: '' })
- 
+
+    const [bookdetails, setbookdetails] = useState({ bookname: bookname, image: image, author: author, edition: edition, language: language, category: category, stock: stock })
+    const [Image, setImage] = useState("");
+    const [urll, setUrll] = useState("");
+
     const handlechange = (e) => {
-        console.log("nameee",e.target.name)
-        if(e.target.name === 'image'){
-
-            setbookdetails({ ...bookdetails, [e.target.name]: e.target.files[0]})
-
-        }
-        else{
-            setbookdetails({ ...bookdetails, [e.target.name]: e.target.value })
-
-        }
+        setbookdetails({ ...bookdetails, [e.target.name]: e.target.value })
 
     }
 
-    
+    const imagechange = (e) => {
+        setImage(e.target.files[0])
+    }
+
+    const uploadimage = async () => {
+
+        const data = new FormData()
+        data.append("file", Image)
+        data.append("upload_preset", "fahisa")
+        data.append("cloud_name", "dcdfmq79x")
+        await axios.post("http://api.cloudinary.com/v1_1/dcdfmq79x/image/upload", data).then((res) => {
+            console.log("response", res.data.url)
+            setUrll(res.data.url)
+
+
+            alert("image upload sucessfully")
+
+        })
+
+
+    }
+
 
     const update_bookdetails = () => {
         console.log("bookdetails", bookdetails)
-        axios.post("http://localhost:3000/update_books", bookdetails).then((respose) => {
+        axios.post("http://localhost:3000/update_books", { bookdetails: bookdetails, id: id,url:urll }).then((respose) => {
 
-         alert  ( respose.data.message)
-				
-			
+            alert(respose.data.message)
+
+
         })
-        // setbookdetails({
 
-        //      bookname: '', image: '', author: '', edition: '', language: '', category: '', stock: '', shelfno: '' 
-
-   
-        // })
-
-    
-    }
-
-    const getdata=()=>{
-        axios.get("http://localhost:3000/getdata_update").then((res) => {
-
-           console.log("getdata",res.data)
-            // alert  ( res.data.message)
-                   
-               
-           })
 
     }
-
- useEffect(() => {
-    getdata()
-
-   
-}, [])
-
-
 
 
 
@@ -99,8 +88,14 @@ const { id } = state;
                             </div>
                             <div>
 
-                                <input type="file" name="image" onChange={handlechange} />
+                                <input type="file" name="image" onChange={imagechange} />
 
+                            </div>
+                            <div>
+                                <button style={{marginLeft:"10px",borderRadius:"8px"}} onClick={uploadimage}>upload</button>
+                            </div>
+                            <div>
+                                <img style={{height:"100px"}} src={image} alt="" />
                             </div>
                         </div>
                         <div className='input'>
@@ -159,15 +154,7 @@ const { id } = state;
 
                             </div>
                         </div>
-                        {/* <div className='input'>
-                            <div className='leftside'>
-                                <h6 style={{ color: "black", fontStyle: "italic", padding: "5px" }}>Current Stock</h6>
-                            </div>
-                            <div>
-                                <input type="text" name="currentstock" value={bookdetails.currentstock} onChange={handlechange} />
 
-                            </div>
-                        </div> */}
                         <div className='input'>
                             <div className='leftside'>
                                 <h6 style={{ color: "black", fontStyle: "italic", padding: "5px" }}> Stock</h6>
@@ -177,15 +164,7 @@ const { id } = state;
 
                             </div>
                         </div>
-                        <div className='input'>
-                            <div className='leftside'>
-                                <h6 style={{ color: "black", fontStyle: "italic", padding: "5px" }}>Shelf No</h6>
-                            </div>
-                            <div>
-                                <input type="text" name="shelfno" value={bookdetails.shelfno} onChange={handlechange} />
 
-                            </div>
-                        </div>
 
 
                         <div className='input'>

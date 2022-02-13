@@ -12,17 +12,19 @@ function Viewbooks() {
     // const [state,setstate]=useState([])
     const navigate=useNavigate()
 
-const updatedata = (id) => {
-    // alert("haiii")
+const updatedata = (id,bookname,author,edition,image,stock,language,category) => {
+   
     console.log("iddd",id)
-    // setstate(id)
     
-    navigate("/Updatebooks",{ state: { id: id} });
-//    return( <Updatebook
-//    id={id}/>)
-
-
     
+    navigate("/Updatebooks",{ state: { id: id,bookname:bookname,author:author,edition:edition,image:image,stock:stock,language:language,category:category} });
+
+}
+const deleteitem=(id)=>{
+    alert("hai")
+    axios.post("http://localhost:3000/deletebook",{id:id}).then((res)=>{
+        alert(res.data.message)
+    })
 
 }
 
@@ -70,7 +72,9 @@ const updatedata = (id) => {
                             {i.edition}th Edition</h5>
                          </Card.Text>
                          {/* <Link to={"/updatebooks"}> */}
-                         <Button variant="primary" style={{margin:"30px"}} onClick={()=>updatedata(i._id)}>update</Button>
+                         <Button variant="primary" style={{margin:"30px"}} onClick={()=>updatedata(i._id,i.bookname,i.author,i.edition,i.image,i.stock,i.language,i.category)}>Update</Button>
+                         <Button variant="primary" style={{margin:"30px"}} onClick={()=>deleteitem(i._id)}>Delete</Button>
+
                          {/* </Link> */}
                          {/* <Button variant="primary">Delete</Button> */}
                      </Card.Body>
